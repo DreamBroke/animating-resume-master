@@ -183,6 +183,12 @@ let code_beautify_resume = `
 #education p {
   top: 40px;
 }
+
+/*
+ *  大功告成，正如右边所示，这就是我的简历啦
+ *  点击下方的“下载PDF简历”按钮还可以直接下载我的简历的PDF文件哦
+ *  以上，期待与您在面试中相见
+ */
 `;
 
 var resumeInputTimeoutID, codeInputTimeoutID
