@@ -49,7 +49,7 @@ Github: https://github.com/DreamBroke | Blog: https://blog.csdn.net/a3427603<br>
 `;
 
 let code_ready = `/*
- *（如果觉得速度慢的话，点击页面右侧的单车图标可以调整观看速度哦）
+ *（如果觉得速度慢，点击右侧的单车可以调整观看速度）
  * 嗨，我是杨金鑫。
  * 我想用代码给你展示一下我的个人简历～
  * 灵感来自：http://strml.net
@@ -96,20 +96,31 @@ body {
 
 /* 现在开始写简历啦！ */
 
-/* 让代码框腾出一些的位置给我的简历框 */
-#options {
-  width: 32%;
+/* 让代码框腾出一些的位置给我的简历框，并进行移动端适配 */
+@media screen and (orientation:landscape) {
+  #options {
+    width: 30%;
+  }
 }
+
+@media screen and (orientation:portrait) {
+  .wrapper {
+    flex-direction: column;
+  }
+  #options {
+    flex: 4;
+  }
+}
+
 /* 准备一个白板 */
 #paper {
-  flex: 1;
+  flex: 6;
   background: #fdfdfd;
   margin: 16px;
   overflow: auto;
   white-space: pre-wrap;
 }
-
-/* 接下来，请看右边 */
+/* 接下来，PC端请看右边，手机端或PC竖屏请看下面 */
 
 `;
 
@@ -177,7 +188,7 @@ let code_beautify_resume = `
 }
 #jobs p, #education p {
   position: absolute;
-  right: 0px;
+  right: 0;
 }
 #jobs p {
   top: 6px;
@@ -187,7 +198,7 @@ let code_beautify_resume = `
 }
 
 /*
- *  大功告成，正如右边所示，这就是我的简历啦
+ *  大功告成，正如右边/下面所示，这就是我的简历啦
  *  点击下方的“下载PDF简历”按钮还可以直接下载我的简历的PDF文件哦
  *  以上，期待与您在面试中相见
  */
@@ -312,7 +323,6 @@ function structureResume() {
   $('a[href="./images/qrcode.png"]').addClass('qrcode-trigger').append($('img.qrcode'))
 }
 function showDownloadButton() {
-  $('#options').css({ 'width': '23%' })
   $('a.downloadResume').addClass('show')
   $('#options').append($('a.downloadResume'))
 }
@@ -345,7 +355,6 @@ function showFinalResult() {
   code_style.innerHTML = code_ready + code_marked + code_beautify_resume;
   code_body.scrollTop = code_body.scrollHeight
   window.clearTimeout(codeInputTimeoutID)
-  $('#options').css({ 'width': '23%' })
   $('a.downloadResume').addClass('show')
   $('#options').append($('a.downloadResume'))
 }
